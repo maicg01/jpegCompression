@@ -32,7 +32,16 @@ bitBits=3  #modify it if you want
 rbBits=runBits+bitBits ##(run,bitSize of coefficient)
 useYCbCr=False #co the thay doi
 useHuffman=True #co the thay doi
-quantizationRatio=1 #co the thay doi, quantization table=default quantization table * quantizationRatio
+# quantizationRatio=1 #co the thay doi, quantization table=default quantization table * quantizationRatio
+
+def mse(ori, re):
+    rows=ori.shape[1]
+    cols=ori.shape[0]
+    return 1/(rows*cols)*(np.sum((ori - re)**2))
+
+def psnr(ori, re):
+    mse_value = mse(ori, re)
+    return 10*(np.log10(255*255/mse_value))
 
 def myYcbcr2rgb(ycbcr):
   return (ycbcr2rgb(ycbcr).clip(0,1)*255).astype(np.uint8) #clip: nho hon 0 thi bang 0 lon hon 1 thi bang 1
@@ -70,7 +79,7 @@ def blocks2img(blocks,xLen,yLen): #chuyển đổi các khối DCT trở lại h
       img[y*h:y*h+h,x*w:x*w+w]=blocks[y][x]
   return img
 
-def quantization(qDctBlocks):
+def quantization(qDctBlocks,quantizationRatio):
   QY=np.array([[16,11,10,16,24,40,51,61],
       [12,12,14,19,26,58,60,55],
       [14,13,16,24,40,57,69,56],
@@ -231,19 +240,23 @@ class UI(QMainWindow):
 
     self.pre_img = None
     self.origin_img = None
+    self.compress_img = None
     self.dctBlocks = None
     self.qDctBlocks = None
     self.numberqtz = 0
     self.image = None
     self.xLen = 0
     self.yLen = 0
+    self.quantizationRatio = 1
 
     #set input button
+    # self.setQratio.setText(str(self.quantizationRatio))
     self.chooseImage.clicked.connect(self.open_img)
     self.DCT.clicked.connect(self.computeDCT)
     self.quantization.clicked.connect(self.computeqDCT)
     self.Decompress.clicked.connect(self.computeDecompress)
     self.Reset.clicked.connect(self.computeReset)
+    self.buttonOK.clicked.connect(self.setRatio)
 
   @pyqtSlot()
   def loadImage(self, fname):
@@ -317,7 +330,7 @@ class UI(QMainWindow):
     self.displayPreImage(2)
 
   def computeqDCT(self):
-    self.qDctBlocks, self.numberqtz = quantization(self.dctBlocks) 
+    self.qDctBlocks, self.numberqtz = quantization(self.dctBlocks,self.quantizationRatio) 
     qDctImg=blocks2img(self.qDctBlocks,self.xLen,self.yLen).astype('int16')  
     newQdct = cv2.resize(qDctImg,(411,391))
     cv2.imwrite("newQdct.jpg",newQdct)
@@ -327,6 +340,7 @@ class UI(QMainWindow):
   def computeDecompress(self):
     dedctBlocks=dctOrDedctAllBlocks(self.qDctBlocks*self.numberqtz,self.xLen, self.yLen,"idct")
     pre_img = myYcbcr2rgb(blocks2img(dedctBlocks,self.xLen, self.yLen)) if useYCbCr else blocks2img(dedctBlocks,self.xLen, self.yLen).astype(np.int16)
+    self.compress_img = pre_img
     pre_img = cv2.resize(pre_img,(411,391))
     cv2.imwrite("pre_img.jpg",pre_img)
     self.pre_img = cv2.imread('pre_img.jpg')
@@ -356,6 +370,17 @@ class UI(QMainWindow):
     textEncoding = "{:.3f}".format(Encoding)
     self.disTime.setText(textEncoding)
 
+    MSE = mse(self.image, self.compress_img)
+    textMSE = "{:.3f}".format(MSE)
+    self.disMSE.setText(textMSE)
+
+    PSRN = psnr(self.image, self.compress_img)
+    textPSRN = "{:.3f}".format(PSRN)
+    self.disPSNR.setText(textPSRN)
+
+  def setRatio(self):
+    self.quantizationRatio = int(self.setQratio.text())
+
   def computeReset(self):
     self.pre_frame.clear()
     self.aft_frame.clear()
@@ -363,7 +388,8 @@ class UI(QMainWindow):
     self.disSizeCompress.setText("")
     self.disRatio.setText("")
     self.disTime.setText("")
-  
+    self.disMSE.setText("")
+    self.disPSNR.setText("")
 
 app = QApplication(sys.argv)
 win = UI()

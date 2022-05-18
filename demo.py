@@ -27,6 +27,7 @@ class Ui_JPEG(object):
         self.centralwidget.setObjectName("centralwidget")
         self.pre_frame = QtWidgets.QLabel(self.centralwidget)
         self.pre_frame.setGeometry(QtCore.QRect(40, 100, 411, 391))
+        self.pre_frame.setMouseTracking(False)
         self.pre_frame.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.pre_frame.setText("")
         self.pre_frame.setObjectName("pre_frame")
@@ -122,7 +123,7 @@ class Ui_JPEG(object):
 "")
         self.chooseImage.setObjectName("chooseImage")
         self.Reset = QtWidgets.QPushButton(self.centralwidget)
-        self.Reset.setGeometry(QtCore.QRect(390, 630, 181, 61))
+        self.Reset.setGeometry(QtCore.QRect(750, 710, 181, 61))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
@@ -232,7 +233,7 @@ class Ui_JPEG(object):
         self.time.setAlignment(QtCore.Qt.AlignCenter)
         self.time.setObjectName("time")
         self.author = QtWidgets.QLabel(self.centralwidget)
-        self.author.setGeometry(QtCore.QRect(1040, 420, 231, 161))
+        self.author.setGeometry(QtCore.QRect(1040, 540, 231, 161))
         font = QtGui.QFont()
         font.setPointSize(13)
         font.setBold(True)
@@ -244,6 +245,99 @@ class Ui_JPEG(object):
         self.author.setAlignment(QtCore.Qt.AlignCenter)
         self.author.setWordWrap(True)
         self.author.setObjectName("author")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(350, 600, 251, 91))
+        self.label.setStyleSheet("background-color: rgb(0, 0, 127);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"")
+        self.label.setText("")
+        self.label.setObjectName("label")
+        self.labelQRatio = QtWidgets.QLabel(self.centralwidget)
+        self.labelQRatio.setGeometry(QtCore.QRect(390, 610, 171, 21))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.labelQRatio.setFont(font)
+        self.labelQRatio.setStyleSheet("background-color: rgb(0, 0, 127);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 5px;\n"
+"")
+        self.labelQRatio.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelQRatio.setObjectName("labelQRatio")
+        self.setQratio = QtWidgets.QLabel(self.centralwidget)
+        self.setQratio.setGeometry(QtCore.QRect(390, 640, 171, 31))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.setQratio.setFont(font)
+        self.setQratio.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"color: rgb(0, 0, 0);\n"
+"")
+        self.setQratio.setText("")
+        self.setQratio.setAlignment(QtCore.Qt.AlignCenter)
+        self.setQratio.setObjectName("setQratio")
+        self.buttonOK = QtWidgets.QPushButton(self.centralwidget)
+        self.buttonOK.setGeometry(QtCore.QRect(440, 710, 81, 41))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.buttonOK.setFont(font)
+        self.buttonOK.setStyleSheet("background-color: rgb(0, 0, 127);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"")
+        self.buttonOK.setObjectName("buttonOK")
+        self.labelMSE = QtWidgets.QLabel(self.centralwidget)
+        self.labelMSE.setGeometry(QtCore.QRect(970, 340, 131, 31))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.labelMSE.setFont(font)
+        self.labelMSE.setStyleSheet("color: rgb(255, 255, 255);\n"
+"border-radius: 5px;\n"
+"")
+        self.labelMSE.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelMSE.setObjectName("labelMSE")
+        self.labelPSNR = QtWidgets.QLabel(self.centralwidget)
+        self.labelPSNR.setGeometry(QtCore.QRect(970, 400, 131, 31))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.labelPSNR.setFont(font)
+        self.labelPSNR.setStyleSheet("color: rgb(255, 255, 255);\n"
+"border-radius: 5px;\n"
+"")
+        self.labelPSNR.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelPSNR.setObjectName("labelPSNR")
+        self.disMSE = QtWidgets.QLabel(self.centralwidget)
+        self.disMSE.setGeometry(QtCore.QRect(1120, 340, 211, 31))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.disMSE.setFont(font)
+        self.disMSE.setStyleSheet("border-radius: 5px;\n"
+"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
+        self.disMSE.setText("")
+        self.disMSE.setAlignment(QtCore.Qt.AlignCenter)
+        self.disMSE.setObjectName("disMSE")
+        self.disPSNR = QtWidgets.QLabel(self.centralwidget)
+        self.disPSNR.setGeometry(QtCore.QRect(1120, 400, 211, 31))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.disPSNR.setFont(font)
+        self.disPSNR.setStyleSheet("border-radius: 5px;\n"
+"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
+        self.disPSNR.setText("")
+        self.disPSNR.setAlignment(QtCore.Qt.AlignCenter)
+        self.disPSNR.setObjectName("disPSNR")
         JPEG.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(JPEG)
@@ -263,7 +357,11 @@ class Ui_JPEG(object):
         self.sizeCompress.setText(_translate("JPEG", "Compression image"))
         self.Ratio.setText(_translate("JPEG", "Compression ratio"))
         self.time.setText(_translate("JPEG", "Time"))
-        self.author.setText(_translate("JPEG", "Nguyen Thi Mai                                      Duong Van Tan"))
+        self.author.setText(_translate("JPEG", "Happy fun!"))
+        self.labelQRatio.setText(_translate("JPEG", "Quantization Ratio"))
+        self.buttonOK.setText(_translate("JPEG", "OK !"))
+        self.labelMSE.setText(_translate("JPEG", "MSE"))
+        self.labelPSNR.setText(_translate("JPEG", "PSNR"))
 
 
 if __name__ == "__main__":
