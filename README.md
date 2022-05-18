@@ -1,6 +1,6 @@
 # jpegCompression
 
-![image](https://user-images.githubusercontent.com/67989845/168456622-6df2105a-b356-4cfa-aec5-93c1e220924a.png)
+![image](https://user-images.githubusercontent.com/67989845/168947646-470c9e55-e9eb-4704-862e-658318f9ef0b.png)
 
 # Resutls
 Run file ```jpeg.py```
