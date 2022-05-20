@@ -1,3 +1,9 @@
+# Convert ```file.ui``` to ```file.py```
+
+```
+$ pyuic5 -x .\demo.ui -o demo.py
+```
+
 # jpegCompression
 
 ![image](https://user-images.githubusercontent.com/67989845/168947646-470c9e55-e9eb-4704-862e-658318f9ef0b.png)
