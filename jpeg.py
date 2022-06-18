@@ -340,7 +340,9 @@ class UI(QMainWindow):
   def computeDecompress(self):
     dedctBlocks=dctOrDedctAllBlocks(self.qDctBlocks*self.numberqtz,self.xLen, self.yLen,"idct")
     pre_img = myYcbcr2rgb(blocks2img(dedctBlocks,self.xLen, self.yLen)) if useYCbCr else blocks2img(dedctBlocks,self.xLen, self.yLen).astype(np.int16)
-    self.compress_img = pre_img
+    # self.compress_img = pre_img
+    self.compress_img = cv2.resize(pre_img,(self.image.shape[1],self.image.shape[0]))
+    cv2.imwrite("img_aft.jpg",self.compress_img)
     pre_img = cv2.resize(pre_img,(411,391))
     cv2.imwrite("pre_img.jpg",pre_img)
     self.pre_img = cv2.imread('pre_img.jpg')
