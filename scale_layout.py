@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\demo.ui'
+# Form implementation generated from reading ui file '.\scale_layout.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -134,12 +134,12 @@ class Ui_JPEG(object):
 "border-radius: 10px;\n"
 "")
         self.Reset.setObjectName("Reset")
-        self.baseFrame = QtWidgets.QLabel(self.centralwidget)
-        self.baseFrame.setGeometry(QtCore.QRect(964, -5, 401, 811))
-        self.baseFrame.setStyleSheet("background-color: rgb(0, 0, 127);")
-        self.baseFrame.setInputMethodHints(QtCore.Qt.ImhMultiLine)
-        self.baseFrame.setText("")
-        self.baseFrame.setObjectName("baseFrame")
+        self.size_grip = QtWidgets.QLabel(self.centralwidget)
+        self.size_grip.setGeometry(QtCore.QRect(964, -5, 401, 811))
+        self.size_grip.setStyleSheet("background-color: rgb(0, 0, 127);")
+        self.size_grip.setInputMethodHints(QtCore.Qt.ImhMultiLine)
+        self.size_grip.setText("")
+        self.size_grip.setObjectName("size_grip")
         self.sizePre = QtWidgets.QLabel(self.centralwidget)
         self.sizePre.setGeometry(QtCore.QRect(970, 100, 131, 31))
         font = QtGui.QFont()
@@ -337,6 +337,14 @@ class Ui_JPEG(object):
 "")
         self.setQratio.setAlignment(QtCore.Qt.AlignCenter)
         self.setQratio.setObjectName("setQratio")
+        self.frame = QtWidgets.QFrame(self.centralwidget)
+        self.frame.setGeometry(QtCore.QRect(1320, 780, 20, 20))
+        self.frame.setMinimumSize(QtCore.QSize(20, 20))
+        self.frame.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.frame.setStyleSheet("background-color: rgb(0, 255, 255);")
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
         JPEG.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(JPEG)
